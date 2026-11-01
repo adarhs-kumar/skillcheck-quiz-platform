@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: skillcheck-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+
+  mongodb:
+    image: mongo:6
+    container_name: skillcheck-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  redis_data:
+  mongodb_data:
